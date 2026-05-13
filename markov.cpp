@@ -47,7 +47,24 @@ int readWordsFromFile(string filename, string words[], int maxWords)
 int buildMarkovChain(const string words[], int numWords, int order,
                      string prefixes[], string suffixes[], int maxChainSize)
 {
-    return 0;
+    int count = 0;
+
+    for (int i = 0; i < numWords - order; i++){
+
+        string prefix = joinWords(words, i, order);
+        string suffix = words[i + order];
+
+        prefixes[count] = prefix;
+        suffixes[count] = suffix;
+
+        count++;
+
+        if (count >= maxChainSize){
+        break;
+        }
+    }
+
+    return count;
 }
 
 // 4

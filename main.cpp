@@ -6,12 +6,16 @@ using namespace std;
 int main()
 {
     string words[1000];
-    int count = readWordsFromFile("test.txt" , words, 1000);
+    int count = readWordsFromFile("test.txt", words, 1000);
 
-    cout << "Read " << count << " words" << endl;
+    string prefixes[10000], suffixes[10000];
 
-    for(int i = 0; i < 10 && i < count; i++){
-        cout << words[i] << endl;
+    int chainSize = buildMarkovChain(words, count, 2, prefixes, suffixes, 10000);
+
+    for (int i = 0; i < 20 && i < chainSize; i++)
+    {
+        cout << "[" << prefixes[i] << "] -> [" << suffixes[i] << "]" << endl;
     }
+
     return 0;
 }
