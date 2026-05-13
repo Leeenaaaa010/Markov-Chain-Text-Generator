@@ -14,8 +14,7 @@ string joinWords(const string words[], int startIndex, int count)
     {
         result = result + words[startIndex + i];
 
-        if (i != count - 1)
-        {
+        if (i != count - 1){
             result = result + " ";
         }
     }
@@ -28,7 +27,20 @@ string joinWords(const string words[], int startIndex, int count)
 // 2
 int readWordsFromFile(string filename, string words[], int maxWords)
 {
-    return 0;
+    ifstream inputFile;
+    inputFile.open(filename);
+
+    if(!inputFile.is_open()){
+        return -1;
+    }
+
+    int count = 0;
+    while (count < maxWords && inputFile >> words[count]){
+        count++;
+    }
+    inputFile.close();
+    return count;
+
 }
 
 // 3

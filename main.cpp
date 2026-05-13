@@ -5,12 +5,13 @@ using namespace std;
 
 int main()
 {
-    cout << "Hello" << endl;
+    string words[1000];
+    int count = readWordsFromFile("test.txt" , words, 1000);
 
-    string testWords[] = {"the", "cat", "sat", "down"};
+    cout << "Read " << count << " words" << endl;
 
-    cout << joinWords(testWords, 0, 2) << endl;  // the cat
-    cout << joinWords(testWords, 1, 3) << endl;  // cat sat down
-
+    for(int i = 0; i < 10 && i < count; i++){
+        cout << words[i] << endl;
+    }
     return 0;
 }
