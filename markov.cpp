@@ -8,7 +8,21 @@ using namespace std;
 // 1
 string joinWords(const string words[], int startIndex, int count)
 {
-    return "";
+    string result = "";
+
+    for (int i = 0; i < count; i++)
+    {
+        result = result + words[startIndex + i];
+
+        if (i != count - 1)
+        {
+            result = result + " ";
+        }
+    }
+
+    return result;
+
+
 }
 
 // 2
