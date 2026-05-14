@@ -2,6 +2,7 @@
 #include <fstream>
 #include <iostream>
 #include <cstdlib>
+#include <string>
 
 using namespace std;
 
@@ -105,6 +106,9 @@ string getRandomSuffix(const string prefixes[], const string suffixes[],
 // 5
 string getRandomPrefix(const string prefixes[], int chainSize)
 {
+    if (chainSize <= 0){
+        return "";
+    }
     int index = rand() % chainSize;
     return prefixes[index];
 
@@ -114,17 +118,23 @@ string getRandomPrefix(const string prefixes[], int chainSize)
 string generateText(const string prefixes[], const string suffixes[],
                     int chainSize, int order, int numWords)
 {
-    string result = "";
+    if (chainSize <= 0 || numWords <= 0){
+        return "";
+    }
 
     string currentPrefix = getRandomPrefix(prefixes, chainSize);
 
-    result = currentPrefix;
+    if (currentPrefix == ""){
+        return "";
+    }
 
+    string result = currentPrefix;
+
+    // store prefix words
     string currentWords[10];
     int wordIndex = 0;
     string temp = "";
 
-    // split prefix into words
     for (int i = 0; i < currentPrefix.length(); i++){
         if (currentPrefix[i] == ' '){
             currentWords[wordIndex] = temp;
@@ -137,7 +147,7 @@ string generateText(const string prefixes[], const string suffixes[],
     }
     currentWords[wordIndex] = temp;
 
-    // generate remaining words
+    // generate text
     for (int i = 0; i < numWords - order; i++){
         string newWord = getRandomSuffix(prefixes, suffixes, chainSize, currentPrefix);
 
@@ -147,7 +157,6 @@ string generateText(const string prefixes[], const string suffixes[],
 
         result += " " + newWord;
 
-        // shift words left
         for (int j = 0; j < order - 1; j++){
             currentWords[j] = currentWords[j + 1];
         }
