@@ -105,7 +105,9 @@ string getRandomSuffix(const string prefixes[], const string suffixes[],
 // 5
 string getRandomPrefix(const string prefixes[], int chainSize)
 {
-    return "";
+    int index = rand() % chainSize;
+    return prefixes[index];
+
 }
 
 // 6
