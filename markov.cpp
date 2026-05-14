@@ -167,6 +167,4 @@ string generateText(const string prefixes[], const string suffixes[],
     }
 
     return result;
-
-
 }
