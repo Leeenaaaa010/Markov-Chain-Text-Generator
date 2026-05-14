@@ -5,7 +5,7 @@ using namespace std;
 
 int main()
 {
-    srand(time(0)); //random
+    srand(time(0));
 
     string words[1000];
     int count = readWordsFromFile("test.txt", words, 1000);
@@ -14,9 +14,9 @@ int main()
 
     int chainSize = buildMarkovChain(words, count, 1, prefixes, suffixes, 10000);
 
-    for (int i = 0; i < 5; i++){
-        cout << getRandomPrefix(prefixes, chainSize) << endl;
-    }
+    string output = generateText(prefixes, suffixes, chainSize, 1, 20);
+
+    cout << output << endl;
 
     return 0;
 }
